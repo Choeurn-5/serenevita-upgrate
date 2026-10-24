@@ -19,12 +19,7 @@ export interface SiteSetting {
   check_out_time?: string;
 }
 
-export interface RoomAmenities {
-  Bathroom: string[];
-  Bedroom: string[];
-  Entertainment: string[];
-  [key: string]: string[];
-}
+export type RoomAmenities = Record<string, string[]>;
 
 export interface Room {
   id: number;
