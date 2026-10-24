@@ -21,6 +21,16 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return {
+      fallback: [
+        {
+          source: '/storage/:path*',
+          destination: 'https://admin.serenevita.asia/laravel/public/storage/:path*',
+        },
+      ],
+    };
+  },
 };
 
 export default nextConfig;
