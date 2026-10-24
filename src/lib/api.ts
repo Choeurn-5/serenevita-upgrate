@@ -47,8 +47,8 @@ export async function getRooms(): Promise<Room[]> {
 
 export async function getRoomBySlug(slug: string): Promise<Room | null> {
   const normalizedSlug = 
-    slug === 'private-pool-suite-villa' ? 'serene-pool-suite' :
-    slug === 'premier-mount-view-room' ? 'serene-mount-view' : slug;
+    (slug === 'private-pool-suite-villa' || slug === 'serene-private-pool-villa') ? 'serene-pool-suite' :
+    (slug === 'premier-mount-view-room' || slug === 'serene-deluxe-room') ? 'serene-mount-view' : slug;
 
   const defaultMatch = DEFAULT_ROOMS.find(r => r.slug === slug || r.slug === normalizedSlug);
   const room = await fetchFromApi<Room>(`/rooms/${normalizedSlug}`, defaultMatch || DEFAULT_ROOMS[0]);

@@ -133,14 +133,14 @@ export default function Footer() {
                 className="footer-nav-link"
                 style={{ color: '#D2CCCC', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 300 }}
               >
-                Private Pool Suite Villa (85 m²)
+                Serene Private Pool Villa (80 m²)
               </Link>
               <Link
                 href="/accommodation/serene-mount-view"
                 className="footer-nav-link"
                 style={{ color: '#D2CCCC', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 300 }}
               >
-                Premier Mount View Room (80 m²)
+                Serene Deluxe Room (40 m²)
               </Link>
               <p style={{ color: '#949389', fontSize: '0.875rem', marginTop: '0.5rem', lineHeight: 1.6 }}>
                 Check-in: 14:00 • Check-out: 12:00

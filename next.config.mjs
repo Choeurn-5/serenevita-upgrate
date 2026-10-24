@@ -31,6 +31,30 @@ const nextConfig = {
       ],
     };
   },
+  async redirects() {
+    return [
+      {
+        source: '/serene-private-pool-villa',
+        destination: '/accommodation/serene-pool-suite',
+        permanent: true,
+      },
+      {
+        source: '/serene-deluxe-room',
+        destination: '/accommodation/serene-mount-view',
+        permanent: true,
+      },
+      {
+        source: '/accommodation/serene-private-pool-villa',
+        destination: '/accommodation/serene-pool-suite',
+        permanent: true,
+      },
+      {
+        source: '/accommodation/serene-deluxe-room',
+        destination: '/accommodation/serene-mount-view',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

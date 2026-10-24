@@ -19,15 +19,15 @@ export const DEFAULT_SETTINGS: SiteSetting = {
 export const DEFAULT_ROOMS: Room[] = [
   {
     id: 1,
-    title: 'Private Pool Suite Villa',
+    title: 'Serene Private Pool Villa',
     slug: 'serene-pool-suite',
-    subtitle: 'Exclusive Private Pool Sanctuary',
-    short_description: 'Spacious and secluded, each villa features its own private swimming pool, lush tropical surroundings, elegant interiors, and indoor-outdoor living spaces.',
-    description: 'Nestled in the serene coastal town of Kep City, our Private Pool Suite Villas offer the ultimate secluded escape. Each villa features its own private swimming pool, lush tropical surroundings, elegant interiors, and seamless indoor-outdoor living spaces—perfect for romantic getaways, couples, or friends seeking exclusive comfort and tranquil privacy.',
-    room_size: '85 m² / 915 ft²',
+    subtitle: 'Private Pool & Garden Sanctuary',
+    short_description: 'A seamless blend of indoor comfort and outdoor luxury design, featuring a private swimming pool, cozy seating area, and spacious outdoor bathtub.',
+    description: 'Designed for guests seeking absolute seclusion and tranquil privacy, the Serene Private Pool Villa blends contemporary indoor comfort with outdoor luxury design. Enjoy your own private swimming pool, relax in the cozy seating area overlooking lush gardens, or unwind in the spacious outdoor bathtub under the sky.',
+    room_size: 'Approximately 80 square meters',
     capacity: '2 Adults',
-    bed_type: '1 Double Bed',
-    view: 'Private Pool View',
+    bed_type: 'Super King Size bed (2mx2m)',
+    view: 'Private pool and garden view',
     starting_price: 175.20,
     featured_image: '/storage/uploads/Pool-exterior-04-1.webp',
     gallery_images: [
@@ -38,43 +38,32 @@ export const DEFAULT_ROOMS: Room[] = [
       '/storage/uploads/Pool-exterior-02.webp',
     ],
     amenities: {
-      'Bathroom': [
-        'Bathrobes',
-        'Free toiletries',
-        'Hair dryer',
-        'Private bathroom',
-        'Walk-in shower',
-        'Outside bathtub',
-        'Shampoo',
-        'Soap',
-        'Toilet paper',
-        'Towels (changed on request)'
+      'Room Highlights': [
+        'Approximately 80 square meters',
+        'Blend of indoor comfort and outdoor luxury design',
+        'Super King Size bed (2mx2m)',
+        'Private swimming pool',
+        'Cozy seating area',
+        'Private pool and garden view',
+        'Full access to resort facilities',
       ],
-      'Bedroom': [
-        'Air conditioning',
-        'Bed sheets (changed on request)',
-        'Rollaway/extra bed not available',
-        'Turndown service'
+      'Bathroom & Wellness': [
+        'Modern ensuite bathroom with rain shower',
+        'Spacious outdoor bathtub',
+        'Double vanity sinks',
+        'Essential luxury and eco-friendly toiletries',
       ],
-      'Food & Drink': [
-        'Mini-fridge',
-        'Minibar',
-        'Room service (limited hours)',
-        'Food & Beverage 10% Off'
+      'Living & Workspace': [
+        'Dedicated work desk',
+        'Make up desk and zoom in mirror',
+        'Safe',
       ],
-      'Internet': [
-        'Free WiFi (25+ Mbps)'
+      'Refreshments & Tech': [
+        'Mini bar counter and fridge',
+        'Complimentary espresso coffee capsule machine',
+        'Filtered drinking water',
+        'High speed Wifi',
       ],
-      'More & Highlights': [
-        'Private pool view',
-        'Sitting area',
-        'Desk',
-        'Housekeeping (daily)',
-        'Iron/ironing board',
-        'Laptop workspace',
-        'Spa 10% Off',
-        'Cribs not available'
-      ]
     },
     is_featured: true,
     is_active: true,
@@ -82,15 +71,15 @@ export const DEFAULT_ROOMS: Room[] = [
   },
   {
     id: 2,
-    title: 'Premier Mount View Room',
+    title: 'Serene Deluxe Room',
     slug: 'serene-mount-view',
-    subtitle: 'Deluxe Mountain View Sanctuary',
-    short_description: 'Surrounded by vibrant greenery, these charming units offer cozy, well-appointed interiors and relaxing mountain views — ideal for nature lovers seeking a peaceful escape.',
-    description: 'Surrounded by vibrant greenery and raw coastal peaks, our Premier Mount View Room offers cozy, well-appointed interiors and relaxing views across Kep. Designed for guests seeking a peaceful and intimate nature-connected sanctuary, this room is the ideal base to experience the serene coastal charm of southern Cambodia.',
-    room_size: '80 m² / 861 ft²',
+    subtitle: 'Minimalist Contemporary Garden Sanctuary',
+    short_description: 'Minimalist and elegant contemporary design with natural daylight, featuring a King Size bed, cozy seating area, and peaceful garden courtyard views.',
+    description: 'Minimalist and elegant contemporary design bathed in natural daylight. The Serene Deluxe Room offers cozy, well-appointed interiors with garden courtyard views—ideal for nature lovers and travelers seeking a peaceful, restorative escape in Kep.',
+    room_size: 'Approximately 40 square meters',
     capacity: '2 Adults',
-    bed_type: '1 Double Bed',
-    view: 'Mountain View',
+    bed_type: 'King Size bed (1m80x2m)',
+    view: 'Garden courtyard view',
     starting_price: 86.25,
     featured_image: '/storage/uploads/Mount-View-In02-2.webp',
     gallery_images: [
@@ -101,40 +90,28 @@ export const DEFAULT_ROOMS: Room[] = [
       '/storage/uploads/Mount-View-ex01.jpg',
     ],
     amenities: {
-      'Bathroom': [
-        'Bathrobes',
-        'Free toiletries',
-        'Hair dryer',
-        'Private bathroom',
-        'Walk-in Shower',
-        'Shampoo',
-        'Soap',
-        'Toilet paper',
-        'Towels (changed on request)'
+      'Room Highlights': [
+        'Approximately 40 square meters',
+        'Minimalist and elegant contemporary design with natural daylight',
+        'King Size bed (1m80x2m)',
+        'Cozy seating area',
+        'Garden courtyard view',
+        'Full access to resort facilities',
       ],
-      'Bedroom': [
-        'Air conditioning',
-        'Bed sheets (changed on request)',
-        'Rollaway/extra bed not available',
-        'Turndown service'
+      'Bathroom & Wellness': [
+        'Modern ensuite bathroom with rain shower',
+        'Essential luxury and eco-friendly toiletries',
       ],
-      'Food & Drink': [
-        'Mini-fridge',
-        'Minibar',
-        'Room service (limited hours)',
-        'Food & Beverage 10% off'
+      'Living & Workspace': [
+        'Dedicated work desk',
+        'Safe',
       ],
-      'Internet': [
-        'Free WiFi (25+ Mbps)'
+      'Refreshments & Tech': [
+        'Mini bar counter and fridge',
+        'Complimentary espresso coffee capsule machine',
+        'Filtered drinking water',
+        'High speed Wifi',
       ],
-      'More & Highlights': [
-        'Desk',
-        'Housekeeping (daily)',
-        'Laptop workspace',
-        'Sitting area',
-        'Spa 10% off',
-        'Cribs not available'
-      ]
     },
     is_featured: true,
     is_active: true,
