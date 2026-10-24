@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  /* =========================================================================
+     WordPress & Elementor Exact Typography & Color System
+     Extracted from post-20.css, post-23.css, post-25.css, 96.css & 103.js
+     ========================================================================= */
+
+  /* Typography */
+  --font-sans: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Forum', Georgia, 'Times New Roman', serif;
+  --font-btn: 'Roboto', sans-serif;
+
+  /* Header & Navigation (from 96.css) */
+  --wp-header-scrolled: #8B4513;        /* SaddleBrown - authentic timber color */
+  --wp-header-hover: #FFE4C4;           /* Bisque - light hover on brown */
+  --wp-header-height: 80px;
+
+  /* Rich Contrast & Timber Sections (post-20.css & post-23.css) */
+  --wp-dark-wood: #2D2F25;              /* Dark olive timber */
+  --wp-dark-charcoal: #281B1B;          /* Warm dark background */
+  --wp-dark-mahogany: #472D1D;          /* Suite titles & luxury headings */
+
+  /* Light Natural Retreat Backgrounds (post-20.css, post-25.css, post-27.css) */
+  --wp-sand-bg: #F4EDE3;                /* Natural warm sand */
+  --wp-linen-bg: #FBF7EC;               /* Dining & Activities linen tone */
+  --wp-parchment-bg: #FEFCF9;           /* Wellness & Gallery soft organic white */
+  --wp-pure-white: #FFFFFF;
+
+  /* Buttons & Accents (post-20.css & post-25.css) */
+  --wp-cream-btn: #FBE8D6;              /* Champagne cream button */
+  --wp-cream-btn-hover: #F0D7C0;        /* Hover peach tone */
+  --wp-cream-btn-text: #574646;         /* Warm charcoal button text */
+  --wp-btn-secondary-text: #505050;     /* Secondary button text */
+  
+  --wp-olive-earth: #676B56;            /* Botanical olive accent */
+  --wp-olive-light: rgba(103, 107, 86, 0.12);
+  --wp-olive-border: rgba(103, 107, 86, 0.28);
+
+  /* Body & Subtitle Text Colors (post-20.css) */
+  --wp-text-body: #574646;              /* Primary body text */
+  --wp-text-light: #5C5E5E;             /* Secondary subheadings */
+  --wp-text-muted: #878080;             /* Muted specs & labels */
+  --wp-text-heading: #2D2F25;           /* Primary section headings */
+
+  /* Borders & Dividers */
+  --wp-border-subtle: rgba(71, 45, 29, 0.12);
+  --wp-border-light: rgba(0, 0, 0, 0.08);
+  --wp-border-cream: rgba(251, 232, 214, 0.4);
+
+  /* Spacing & Radii */
+  --max-width: 1240px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  /* Smooth Compositor Transitions */
+  --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.2s ease-out;
+  --shadow-card: 0 10px 30px rgba(45, 47, 37, 0.08);
+  --shadow-card-hover: 0 18px 42px rgba(45, 47, 37, 0.16);
+  --shadow-header: 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--wp-parchment-bg);
+  color: var(--wp-text-body);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  background-color: var(--wp-parchment-bg);
+  color: var(--wp-text-body);
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================================================
+   Typography
+   ========================================================================= */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--wp-dark-mahogany);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+}
+
+h1 { font-size: clamp(2.5rem, 5.5vw, 4.25rem); }
+h2 { font-size: clamp(2rem, 3.8vw, 3rem); }
+h3 { font-size: clamp(1.4rem, 2.2vw, 1.85rem); }
+h4 { font-size: 1.25rem; }
+
+p {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  color: inherit;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* =========================================================================
+   Layout Containers & Dividers
+   ========================================================================= */
+.wp-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+.wp-divider {
+  width: 80px;
+  height: 2px;
+  background-color: var(--wp-olive-earth);
+  margin: 1.5rem auto;
+  opacity: 0.75;
+}
+
+.wp-divider-left {
+  width: 60px;
+  height: 2px;
+  background-color: var(--wp-olive-earth);
+  margin: 1.25rem 0 1.75rem 0;
+  opacity: 0.75;
+}
+
+/* =========================================================================
+   Minimalist Luxury Buttons (Compact, High-Precision & Elegant Motion)
+   ========================================================================= */
+.wp-btn-hero {
+  background-color: rgba(255, 255, 255, 0.04);
+  color: #FFFFFF !important;
+  font-family: var(--font-btn);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 0.52rem 1.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+}
+
+.wp-btn-hero:hover {
+  background-color: var(--wp-cream-btn);
+  color: var(--wp-cream-btn-text) !important;
+  border-color: var(--wp-cream-btn);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 18px -2px rgba(0, 0, 0, 0.3);
+}
+
+.wp-btn-hero:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.wp-btn-cream {
+  background: linear-gradient(135deg, #FBE8D6 0%, #F5DFCB 100%);
+  color: var(--wp-cream-btn-text) !important;
+  font-family: var(--font-btn);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.52rem 1.35rem;
+  border: 1px solid rgba(139, 69, 19, 0.2);
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(71, 45, 29, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wp-btn-cream:hover {
+  background: linear-gradient(135deg, #FFF0E0 0%, #FBE8D6 100%);
+  color: var(--wp-dark-mahogany) !important;
+  border-color: rgba(139, 69, 19, 0.4);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 16px -2px rgba(71, 45, 29, 0.16);
+}
+
+.wp-btn-cream:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(71, 45, 29, 0.1);
+}
+
+.wp-btn-wood {
+  background: linear-gradient(135deg, #8B4513 0%, #763A0F 100%);
+  color: #FFFFFF !important;
+  font-family: var(--font-btn);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.52rem 1.35rem;
+  border: 1px solid rgba(251, 232, 214, 0.2);
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(139, 69, 19, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wp-btn-wood:hover {
+  background: linear-gradient(135deg, #9C4E17 0%, #8B4513 100%);
+  color: #FFF3E6 !important;
+  border-color: rgba(251, 232, 214, 0.45);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 18px -2px rgba(139, 69, 19, 0.3);
+}
+
+.wp-btn-wood:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 5px rgba(139, 69, 19, 0.16);
+}
+
+.wp-btn-outline {
+  background-color: transparent;
+  color: var(--wp-dark-mahogany) !important;
+  font-family: var(--font-btn);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.48rem 1.25rem;
+  border: 1px solid var(--wp-dark-mahogany);
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wp-btn-outline:hover {
+  background-color: var(--wp-dark-mahogany);
+  color: #FFFFFF !important;
+  transform: translateY(-1.5px);
+  box-shadow: 0 5px 14px -2px rgba(71, 45, 29, 0.2);
+}
+
+.wp-btn-outline:active {
+  transform: translateY(0);
+}
+
+/* =========================================================================
+   Cards & Luxury Panels
+   ========================================================================= */
+.wp-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--wp-border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-smooth);
+  overflow: hidden;
+}
+
+.wp-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(103, 107, 86, 0.3);
+}
+
+.wp-card-dark {
+  background-color: var(--wp-dark-wood);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
+  transition: var(--transition-smooth);
+}
+
+.wp-card-dark:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.45);
+  border-color: var(--wp-cream-btn);
+}
+
+/* Image zoom hover effect */
+.wp-image-zoom-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.wp-image-zoom {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wp-card:hover .wp-image-zoom,
+.wp-card-dark:hover .wp-image-zoom {
+  transform: scale(1.05);
+}
+
+/* Section Backgrounds */
+.wp-bg-sand { background-color: var(--wp-sand-bg); }
+.wp-bg-linen { background-color: var(--wp-linen-bg); }
+.wp-bg-parchment { background-color: var(--wp-parchment-bg); }
+.wp-bg-wood { background-color: var(--wp-dark-wood); color: #FFFFFF; }
+.wp-bg-charcoal { background-color: var(--wp-dark-charcoal); color: #FFFFFF; }
+
+/* =========================================================================
+   Animated Motion Keyframes (Modern Web Guidance Motion Standard)
+   Compositor-only transforms & opacity
+   ========================================================================= */
+@keyframes wpFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wpFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes wpSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: wpFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: wpFadeIn 0.7s ease-out forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+
+/* Accessible Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
