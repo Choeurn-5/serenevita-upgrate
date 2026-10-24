@@ -1,24 +1,31 @@
 import React from 'react';
 import Link from 'next/link';
-import { getSiteSettings, getRooms, getDiningVenue } from '@/lib/api';
+import { getSiteSettings, getRooms, getDiningVenue, getGallery, resolveImageUrl, extractYoutubeId } from '@/lib/api';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function HomePage() {
-  const [settings, rooms, dining] = await Promise.all([
+  const [settings, rooms, dining, gallery] = await Promise.all([
     getSiteSettings(),
     getRooms(),
     getDiningVenue(),
+    getGallery(),
   ]);
 
   const bookingUrl = settings?.booking_url || 'https://app.inn-connect.com/book2/?p=Serene+Vita+Retreat';
+  const youtubeId = extractYoutubeId(settings?.hero_video_url);
 
-  const galleryPreview = [
-    { src: '/storage/uploads/SD-10.jpg', title: 'Colonial Retreat Architecture' },
-    { src: '/storage/uploads/Pool-exterior-02.webp', title: 'Tiered Azure Infinity Pools' },
-    { src: '/storage/uploads/Mount-View-ex01.jpg', title: 'Mountain Suite Verandah' },
-    { src: '/storage/uploads/06-r.jpg', title: 'Tropical Shaded Colonnade' },
-    { src: '/storage/uploads/Pool-interior-01.webp', title: 'Pool View Suite Master Bed' },
-    { src: '/storage/uploads/SD-12.webp', title: 'Lush Rainforest Pathways' },
-  ];
+  const galleryPreview = (gallery && gallery.length > 0)
+    ? gallery.slice(0, 6).map((g) => ({ src: resolveImageUrl(g.image_url), title: g.title || 'Sanctuary Moment' }))
+    : [
+      { src: resolveImageUrl('/storage/uploads/SD-10.jpg'), title: 'Colonial Retreat Architecture' },
+      { src: resolveImageUrl('/storage/uploads/Pool-exterior-02.webp'), title: 'Tiered Azure Infinity Pools' },
+      { src: resolveImageUrl('/storage/uploads/Mount-View-ex01.jpg'), title: 'Mountain Suite Verandah' },
+      { src: resolveImageUrl('/storage/uploads/06-r.jpg'), title: 'Tropical Shaded Colonnade' },
+      { src: resolveImageUrl('/storage/uploads/Pool-interior-01.webp'), title: 'Pool View Suite Master Bed' },
+      { src: resolveImageUrl('/storage/uploads/SD-12.webp'), title: 'Lush Rainforest Pathways' },
+    ];
 
   return (
     <div style={{ position: 'relative' }}>
@@ -45,7 +52,7 @@ export default async function HomePage() {
           }}
         >
           <iframe
-            src="https://www.youtube.com/embed/7DX7KlCHO2s?autoplay=1&mute=1&controls=0&loop=1&playlist=7DX7KlCHO2s&playsinline=1&rel=0&showinfo=0"
+            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeId}&playsinline=1&rel=0&showinfo=0`}
             style={{
               position: 'absolute',
               top: '50%',
@@ -441,7 +448,7 @@ export default async function HomePage() {
                   }}
                 >
                   <img
-                    src={room.featured_image || '/storage/uploads/Pool-exterior-04-1.webp'}
+                    src={resolveImageUrl(room.featured_image) || resolveImageUrl('/storage/uploads/Pool-exterior-04-1.webp')}
                     alt={room.title}
                     className="wp-image-zoom"
                   />

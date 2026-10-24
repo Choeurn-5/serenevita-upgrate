@@ -1,6 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import { getWellnessItems, getSiteSettings } from '@/lib/api';
+import { getWellnessItems, getSiteSettings, resolveImageUrl } from '@/lib/api';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export const metadata = {
   title: 'Wellness & Spa — Serene Vita Retreat',
@@ -20,7 +23,7 @@ export default async function WellnessPage() {
         style={{
           position: 'relative',
           padding: '9.5rem 1.5rem 7rem',
-          backgroundImage: 'linear-gradient(rgba(18, 22, 18, 0.28), rgba(18, 22, 18, 0.50)), url(/storage/uploads/DSC02794.jpg)',
+          backgroundImage: `linear-gradient(rgba(18, 22, 18, 0.28), rgba(18, 22, 18, 0.50)), url(${resolveImageUrl('/storage/uploads/DSC02794.jpg')})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           textAlign: 'center',
@@ -118,7 +121,7 @@ export default async function WellnessPage() {
                 }}
               >
                 <div className="wp-image-zoom-container" style={{ height: '240px' }}>
-                  <img src={item.image} alt={item.title} className="wp-image-zoom" />
+                  <img src={resolveImageUrl(item.image)} alt={item.title} className="wp-image-zoom" />
                   <div
                     style={{
                       position: 'absolute',

@@ -2,12 +2,13 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { getSiteSettings, resolveImageUrl } from '@/lib/api';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.serenevita.asia'),
   title: 'Serene Vita Retreat — Regenerative Luxury Sanctuary',
   description: 'A regenerative luxury escape to recharge, explore, and connect. Discover tranquil infinity pools, mountain-facing suites, restorative wellness, and authentic gastronomy.',
   keywords: ['Serene Vita Retreat', 'Luxury Retreat Cambodia', 'Boutique Resort', 'Wellness Sanctuary', 'Infinity Pool Villa', 'Kampot Resort'],
@@ -32,24 +33,27 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const settings = await getSiteSettings();
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Resort',
-    name: 'Serene Vita Retreat',
+    name: settings.site_name || 'Serene Vita Retreat',
     url: 'https://serenevita.asia',
-    logo: '/storage/uploads/cropped-Untitled-2-1.webp',
-    description: 'A regenerative luxury escape to recharge, explore, and connect.',
+    logo: resolveImageUrl(settings.logo_url) || '/storage/uploads/cropped-Untitled-2-1.webp',
+    description: settings.description || 'A regenerative luxury escape to recharge, explore, and connect.',
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'Cambodia',
+      streetAddress: settings.address || 'Street 2309, Kep City, Cambodia',
     },
-    telephone: '+855 12 345 678',
-    email: 'info@serenevita.asia',
+    telephone: settings.phone || '+855 15 255 529',
+    email: settings.email || 'info@serenevita.asia',
     priceRange: '$$$',
     amenityFeature: [
       { '@type': 'LocationFeatureSpecification', name: 'Tiered Azure Infinity Pools' },
@@ -69,9 +73,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Header />
+        <Header settings={settings} />
         <main>{children}</main>
-        <Footer />
+        <Footer settings={settings} />
       </body>
     </html>
   );

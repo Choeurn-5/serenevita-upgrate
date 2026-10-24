@@ -23,6 +23,12 @@ const nextConfig = {
   },
   async rewrites() {
     return {
+      beforeFiles: [
+        {
+          source: '/storage/:path*',
+          destination: 'https://admin.serenevita.asia/laravel/public/storage/:path*',
+        },
+      ],
       fallback: [
         {
           source: '/storage/:path*',

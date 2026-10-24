@@ -1,6 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import { getDiningVenue, getSiteSettings } from '@/lib/api';
+import { getDiningVenue, getSiteSettings, resolveImageUrl } from '@/lib/api';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export const metadata = {
   title: 'Dining — Serenity Restaurant | Serene Vita Retreat',
@@ -14,11 +17,11 @@ export default async function DinningPage() {
   ]);
 
   const cards = [
-    { title: 'AREA', value: dining.area, img: '/storage/uploads/00-r.webp', desc: 'Intimate dining space with garden & pool vistas' },
-    { title: 'TABLE', value: dining.capacity, img: '/storage/uploads/10-r-1-1024x684.webp', desc: 'Handcrafted teak tables with candlelight ambiance' },
-    { title: 'FOOD', value: dining.food_type, img: '/storage/uploads/12-r.webp', desc: 'Authentic Khmer heritage recipes & refined Western classics' },
-    { title: 'DRINK', value: dining.drinks_type, img: '/storage/uploads/11-r.webp', desc: 'Botanical mocktails, craft cocktails, organic tea & fine wine' },
-    { title: 'MEAL', value: dining.meal_times, img: '/storage/uploads/09-rr.webp', desc: 'Sunrise breakfast, relaxed lunch & romantic starlit dinner' },
+    { title: 'AREA', value: dining.area, img: resolveImageUrl('/storage/uploads/00-r.webp'), desc: 'Intimate dining space with garden & pool vistas' },
+    { title: 'TABLE', value: dining.capacity, img: resolveImageUrl('/storage/uploads/10-r-1-1024x684.webp'), desc: 'Handcrafted teak tables with candlelight ambiance' },
+    { title: 'FOOD', value: dining.food_type, img: resolveImageUrl('/storage/uploads/12-r.webp'), desc: 'Authentic Khmer heritage recipes & refined Western classics' },
+    { title: 'DRINK', value: dining.drinks_type, img: resolveImageUrl('/storage/uploads/11-r.webp'), desc: 'Botanical mocktails, craft cocktails, organic tea & fine wine' },
+    { title: 'MEAL', value: dining.meal_times, img: resolveImageUrl('/storage/uploads/09-rr.webp'), desc: 'Sunrise breakfast, relaxed lunch & romantic starlit dinner' },
   ];
 
   return (
@@ -28,7 +31,7 @@ export default async function DinningPage() {
         style={{
           position: 'relative',
           padding: '9.5rem 1.5rem 7rem',
-          backgroundImage: `linear-gradient(rgba(18, 22, 18, 0.28), rgba(18, 22, 18, 0.50)), url(${dining.hero_image || '/storage/uploads/11-r.webp'})`,
+          backgroundImage: `linear-gradient(rgba(18, 22, 18, 0.28), rgba(18, 22, 18, 0.50)), url(${resolveImageUrl(dining.hero_image) || resolveImageUrl('/storage/uploads/11-r.webp')})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           textAlign: 'center',

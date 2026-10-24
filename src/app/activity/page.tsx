@@ -1,6 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import { getActivities, getSiteSettings } from '@/lib/api';
+import { getActivities, getSiteSettings, resolveImageUrl } from '@/lib/api';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export const metadata = {
   title: 'Activities & Experiences — Serene Vita Retreat',
@@ -20,7 +23,7 @@ export default async function ActivityPage() {
         style={{
           position: 'relative',
           padding: '9.5rem 1.5rem 7rem',
-          backgroundImage: 'linear-gradient(rgba(18, 22, 18, 0.28), rgba(18, 22, 18, 0.50)), url(/storage/uploads/SD-00.webp)',
+          backgroundImage: `linear-gradient(rgba(18, 22, 18, 0.28), rgba(18, 22, 18, 0.50)), url(${resolveImageUrl('/storage/uploads/SD-00.webp')})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           textAlign: 'center',
@@ -115,7 +118,7 @@ export default async function ActivityPage() {
                 }}
               >
                 <div className="wp-image-zoom-container" style={{ height: '260px' }}>
-                  <img src={act.image} alt={act.title} className="wp-image-zoom" />
+                  <img src={resolveImageUrl(act.image)} alt={act.title} className="wp-image-zoom" />
                 </div>
                 <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '0.85rem', flex: 1 }}>
                   <span

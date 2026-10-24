@@ -1,6 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import { getRooms, getSiteSettings } from '@/lib/api';
+import { getRooms, getSiteSettings, resolveImageUrl } from '@/lib/api';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export const metadata = {
   title: 'Accommodations & Suites — Serene Vita Retreat',
@@ -89,7 +92,7 @@ export default async function AccommodationPage() {
                   }}
                 >
                   <img
-                    src={room.featured_image || '/storage/uploads/Pool-exterior-04-1.webp'}
+                    src={resolveImageUrl(room.featured_image) || resolveImageUrl('/storage/uploads/Pool-exterior-04-1.webp')}
                     alt={room.title}
                     className="wp-image-zoom"
                   />

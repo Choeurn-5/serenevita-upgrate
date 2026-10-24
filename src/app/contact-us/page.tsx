@@ -1,9 +1,18 @@
 'use client';
 
-import React, { useState } from 'react';
-import { submitInquiry } from '@/lib/api';
+import React, { useState, useEffect } from 'react';
+import { submitInquiry, getSiteSettings } from '@/lib/api';
+import { SiteSetting } from '@/lib/types';
 
 export default function ContactUsPage() {
+  const [settings, setSettings] = useState<SiteSetting | null>(null);
+
+  useEffect(() => {
+    getSiteSettings().then((res) => {
+      if (res) setSettings(res);
+    }).catch(() => {});
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -147,7 +156,7 @@ export default function ContactUsPage() {
                     Sanctuary Address
                   </span>
                   <strong style={{ fontSize: '1.05rem', color: '#2D2F25' }}>
-                    Serene Vita Retreat, Cambodia
+                    {settings?.address || 'Street 2309, Kep City, Cambodia'}
                   </strong>
                 </div>
 
@@ -156,7 +165,7 @@ export default function ContactUsPage() {
                     Telephone & WhatsApp
                   </span>
                   <strong style={{ fontSize: '1.05rem', color: '#2D2F25' }}>
-                    +855 12 345 678
+                    {settings?.phone || '+855 15 255 529'}
                   </strong>
                 </div>
 
@@ -165,7 +174,7 @@ export default function ContactUsPage() {
                     Reservations Email
                   </span>
                   <strong style={{ fontSize: '1.05rem', color: '#2D2F25' }}>
-                    info@serenevita.asia
+                    {settings?.email || 'info@serenevita.asia'}
                   </strong>
                 </div>
 
@@ -174,7 +183,7 @@ export default function ContactUsPage() {
                     Direct Booking Engine
                   </span>
                   <a
-                    href="https://app.inn-connect.com/book2/?p=Serene+Vita+Retreat"
+                    href={settings?.booking_url || 'https://app.inn-connect.com/book2/?p=Serene+Vita+Retreat'}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ fontSize: '0.95rem', color: '#8B4513', textDecoration: 'underline', fontWeight: 500 }}

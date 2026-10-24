@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { DEFAULT_GALLERY } from '@/lib/defaultData';
 import { GalleryItem } from '@/lib/types';
-import { getGallery } from '@/lib/api';
+import { getGallery, resolveImageUrl } from '@/lib/api';
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
@@ -141,7 +141,7 @@ export default function GalleryPage() {
                 }}
               >
                 <img
-                  src={item.image_url}
+                  src={resolveImageUrl(item.image_url)}
                   alt={item.title}
                   className="wp-image-zoom"
                 />
@@ -207,7 +207,7 @@ export default function GalleryPage() {
             ✕
           </button>
           <img
-            src={selectedPhoto.image_url}
+            src={resolveImageUrl(selectedPhoto.image_url)}
             alt={selectedPhoto.title}
             style={{
               maxWidth: '90vw',

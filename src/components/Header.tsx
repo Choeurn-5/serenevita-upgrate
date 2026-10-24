@@ -4,12 +4,16 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { SiteSetting } from '@/lib/types';
+import { resolveImageUrl } from '@/lib/api';
+
 interface HeaderProps {
   onOpenBooking?: () => void;
   bookingUrl?: string;
+  settings?: SiteSetting;
 }
 
-export default function Header({ onOpenBooking, bookingUrl }: HeaderProps) {
+export default function Header({ onOpenBooking, bookingUrl, settings }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -38,7 +42,8 @@ export default function Header({ onOpenBooking, bookingUrl }: HeaderProps) {
     { name: 'Contact Us', href: '/contact-us' },
   ];
 
-  const bookLink = bookingUrl || 'https://app.inn-connect.com/book2/?p=Serene+Vita+Retreat';
+  const bookLink = bookingUrl || settings?.booking_url || 'https://app.inn-connect.com/book2/?p=Serene+Vita+Retreat';
+  const logoSrc = resolveImageUrl(settings?.logo_url) || '/storage/uploads/cropped-Untitled-2-1.webp';
 
   return (
     <>
@@ -82,8 +87,8 @@ export default function Header({ onOpenBooking, bookingUrl }: HeaderProps) {
             }}
           >
             <img
-              src="/storage/uploads/cropped-Untitled-2-1.webp"
-              alt="Serene Vita Retreat"
+              src={logoSrc}
+              alt={settings?.site_name || 'Serene Vita Retreat'}
               style={{
                 maxHeight: scrolled ? '46px' : '54px',
                 width: 'auto',
@@ -228,8 +233,8 @@ export default function Header({ onOpenBooking, bookingUrl }: HeaderProps) {
 
           <div style={{ marginBottom: '2.5rem' }}>
             <img
-              src="/storage/uploads/cropped-Untitled-2-1.webp"
-              alt="Serene Vita Retreat"
+              src={logoSrc}
+              alt={settings?.site_name || 'Serene Vita Retreat'}
               style={{ maxHeight: '55px', width: 'auto' }}
             />
           </div>

@@ -8,11 +8,40 @@ import {
 } from './defaultData';
 import { SiteSetting, Room, DiningVenue, WellnessItem, Activity, GalleryItem, InquiryPayload } from './types';
 
-let rawApiBase = process.env.NEXT_PUBLIC_API_URL || 'https://admin.serenevita.asia/laravel/public/api';
-if (rawApiBase.includes('/laravel/api')) {
-  rawApiBase = rawApiBase.replace('/laravel/api', '/laravel/public/api');
+let rawApiBase = (process.env.NEXT_PUBLIC_API_URL || 'https://admin.serenevita.asia/laravel/public/api').trim();
+if (rawApiBase.includes('admin.serenevita.asia')) {
+  rawApiBase = 'https://admin.serenevita.asia/laravel/public/api';
+} else {
+  rawApiBase = rawApiBase.replace(/\/+$/, '');
+  if (rawApiBase.includes('/laravel/api')) {
+    rawApiBase = rawApiBase.replace('/laravel/api', '/laravel/public/api');
+  }
+  if (!rawApiBase.endsWith('/api')) {
+    rawApiBase = `${rawApiBase}/api`;
+  }
 }
 const API_BASE = rawApiBase;
+
+/**
+ * Resolves media paths directly to live cPanel storage so updates from admin reflect instantly
+ */
+export function resolveImageUrl(path?: string | null): string {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:')) {
+    return path;
+  }
+  const clean = path.startsWith('/') ? path : `/${path}`;
+  return `https://admin.serenevita.asia/laravel/public${clean}`;
+}
+
+/**
+ * Extracts YouTube video ID from various URL formats
+ */
+export function extractYoutubeId(url?: string | null): string {
+  if (!url) return '7DX7KlCHO2s';
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+  return match ? match[1] : '7DX7KlCHO2s';
+}
 
 /**
  * Safe fetch helper with timeout and automatic default fallback
@@ -26,6 +55,8 @@ async function fetchFromApi<T>(endpoint: string, fallback: T): Promise<T> {
     const res = await fetch(url, {
       signal: controller.signal,
       cache: 'no-store',
+      // @ts-ignore - Next.js extended fetch option
+      next: { revalidate: 0 },
       headers: {
         'Accept': 'application/json',
       },

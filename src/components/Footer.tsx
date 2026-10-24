@@ -2,9 +2,17 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { SiteSetting } from '@/lib/types';
+import { resolveImageUrl } from '@/lib/api';
 
-export default function Footer() {
+export default function Footer({ settings }: { settings?: SiteSetting }) {
   const currentYear = new Date().getFullYear();
+  const logoSrc = resolveImageUrl(settings?.logo_url) || '/storage/uploads/cropped-Untitled-2-1.webp';
+  const phone = settings?.phone || '+855 15 255 529';
+  const email = settings?.email || 'info@serenevita.asia';
+  const address = settings?.address || 'Street 2309, Kep City, Cambodia';
+  const bookingUrl = settings?.booking_url || 'https://app.inn-connect.com/book2/?p=Serene+Vita+Retreat';
+  const description = settings?.description || 'A regenerative luxury escape thoughtfully nestled in lush rainforest tranquility. Recharge in screen-free sanctuaries, savor organic gastronomy, and renew your spirit.';
 
   return (
     <footer
@@ -30,13 +38,13 @@ export default function Footer() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <Link href="/" style={{ display: 'inline-block' }}>
               <img
-                src="/storage/uploads/cropped-Untitled-2-1.webp"
-                alt="Serene Vita Retreat"
+                src={logoSrc}
+                alt={settings?.site_name || 'Serene Vita Retreat'}
                 style={{ maxHeight: '55px', width: 'auto' }}
               />
             </Link>
             <p style={{ color: '#D2CCCC', fontSize: '0.95rem', lineHeight: 1.8, fontWeight: 300 }}>
-              A regenerative luxury escape thoughtfully nestled in lush rainforest tranquility. Recharge in screen-free sanctuaries, savor organic gastronomy, and renew your spirit.
+              {description}
             </p>
             <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
               <span
@@ -170,25 +178,25 @@ export default function Footer() {
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
-                <span>Street 2309, Kep City, Cambodia</span>
+                <span>{address}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C5A880" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
-                <span>+855 15 255 529</span>
+                <span>{phone}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C5A880" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
-                <span>info@serenevita.asia</span>
+                <span>{email}</span>
               </div>
             </div>
             <div style={{ marginTop: '0.4rem' }}>
               <a
-                href="https://app.inn-connect.com/book2/?p=Serene+Vita+Retreat"
+                href={bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="wp-btn-cream"

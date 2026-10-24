@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getRoomBySlug, getRooms, getSiteSettings } from '@/lib/api';
+import { getRoomBySlug, getSiteSettings, resolveImageUrl } from '@/lib/api';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -9,11 +9,6 @@ interface PageProps {
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
-
-export async function generateStaticParams() {
-  const rooms = await getRooms();
-  return rooms.map((r) => ({ slug: r.slug }));
-}
 
 export default async function RoomDetailPage({ params }: PageProps) {
   const { slug } = await params;
@@ -35,7 +30,7 @@ export default async function RoomDetailPage({ params }: PageProps) {
         style={{
           position: 'relative',
           padding: '9.5rem 1.5rem 6rem',
-          backgroundImage: `linear-gradient(rgba(18, 22, 18, 0.28), rgba(18, 22, 18, 0.50)), url(${room.featured_image})`,
+          backgroundImage: `linear-gradient(rgba(18, 22, 18, 0.28), rgba(18, 22, 18, 0.50)), url(${resolveImageUrl(room.featured_image)})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           textAlign: 'center',
@@ -397,7 +392,7 @@ export default async function RoomDetailPage({ params }: PageProps) {
                     }}
                   >
                     <img
-                      src={img}
+                      src={resolveImageUrl(img)}
                       alt={`${room.title} photo ${idx + 1}`}
                       className="wp-image-zoom"
                     />
