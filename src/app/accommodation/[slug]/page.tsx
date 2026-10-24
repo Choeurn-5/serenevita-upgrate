@@ -7,6 +7,9 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function generateStaticParams() {
   const rooms = await getRooms();
   return rooms.map((r) => ({ slug: r.slug }));

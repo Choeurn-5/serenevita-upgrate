@@ -8,7 +8,11 @@ import {
 } from './defaultData';
 import { SiteSetting, Room, DiningVenue, WellnessItem, Activity, GalleryItem, InquiryPayload } from './types';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://admin.serenevita.asia/laravel/api';
+let rawApiBase = process.env.NEXT_PUBLIC_API_URL || 'https://admin.serenevita.asia/laravel/public/api';
+if (rawApiBase.includes('/laravel/api')) {
+  rawApiBase = rawApiBase.replace('/laravel/api', '/laravel/public/api');
+}
+const API_BASE = rawApiBase;
 
 /**
  * Safe fetch helper with timeout and automatic default fallback
@@ -17,11 +21,14 @@ async function fetchFromApi<T>(endpoint: string, fallback: T): Promise<T> {
   try {
     const url = `${API_BASE}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}`;
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3500);
+    const timeoutId = setTimeout(() => controller.abort(), 8000);
 
     const res = await fetch(url, {
       signal: controller.signal,
       cache: 'no-store',
+      headers: {
+        'Accept': 'application/json',
+      },
     });
     clearTimeout(timeoutId);
 

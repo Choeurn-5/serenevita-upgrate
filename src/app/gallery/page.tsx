@@ -1,12 +1,22 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DEFAULT_GALLERY } from '@/lib/defaultData';
 import { GalleryItem } from '@/lib/types';
+import { getGallery } from '@/lib/api';
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryItem | null>(null);
+  const [items, setItems] = useState<GalleryItem[]>(DEFAULT_GALLERY);
+
+  useEffect(() => {
+    getGallery().then((data) => {
+      if (Array.isArray(data) && data.length > 0) {
+        setItems(data);
+      }
+    }).catch(() => {});
+  }, []);
 
   const categories = [
     { id: 'all', label: 'All Photographs' },
@@ -18,8 +28,8 @@ export default function GalleryPage() {
   ];
 
   const filteredItems = activeCategory === 'all'
-    ? DEFAULT_GALLERY
-    : DEFAULT_GALLERY.filter((item) => item.category === activeCategory);
+    ? items
+    : items.filter((item) => item.category === activeCategory);
 
   return (
     <div style={{ position: 'relative', backgroundColor: 'var(--wp-parchment-bg)' }}>
